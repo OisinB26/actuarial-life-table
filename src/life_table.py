@@ -1,12 +1,19 @@
 class LifeTable:
-        
-    def __init__(self, qx):
+
+    def __init__(self, qx, radix=100000):
         """
         qx = list of annual mortality rates
-        Example: [0.01, 0.012, 0.013]
+        radix = number of lives at start (default 100000)
         """
         self.qx = qx
+        self.radix = radix
 
         # px is the probability of surviving each year
         self.px = [1 - q for q in qx]
+
+        # lx = number of people alive at start of each year
+        self.lx = [radix]
+        for p in self.px:
+            next_l = self.lx[-1] * p
+            self.lx.append(next_l)
             
