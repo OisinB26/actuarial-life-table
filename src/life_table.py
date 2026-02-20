@@ -17,3 +17,8 @@ class LifeTable:
             next_l = self.lx[-1] * p
             self.lx.append(next_l)
             
+        # dx = number of deaths during each year
+        self.dx = []
+        for i in range(len(self.qx)):
+            deaths = self.lx[i] * self.qx[i]
+            self.dx.append(deaths)
